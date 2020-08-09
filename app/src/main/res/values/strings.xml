@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Work &amp; Machines</string>
+
+    <string-array name="spinnerValues">
+        <item>Machine 101</item>
+        <item>Machine 102</item>
+        <item>Add Machine…</item>
+    </string-array>
+</resources>
