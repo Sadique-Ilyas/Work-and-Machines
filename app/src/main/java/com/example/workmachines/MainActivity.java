@@ -28,20 +28,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("---------------------------------------------------------------");
-        System.out.println("------------------------ON CREATE CALLED ----------------------");
-
+        //Initializing Views
         darkSwitch = findViewById(R.id.darkSwitch);
         spinner = findViewById(R.id.machineSpinner);
         time = findViewById(R.id.text_view_time);
         date = findViewById(R.id.text_view_date);
 
+        //Checking Dark mode on startup
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             darkSwitch.setChecked(true);
             System.out.println("---------------------------------------------------------------");
             System.out.println("------------------------CHECKED----------------------");
         }
 
+        //Date & Time
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -66,21 +66,20 @@ public class MainActivity extends AppCompatActivity {
         };
         thread.start();
 
-
+        //Machine Spinner
         final String[] spinnerValues = {"Machine 101", "Machine 102", "Add Machine..."};
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, spinnerValues);
         spinner.setAdapter(arrayAdapter);
 
+
+        //Switch for Dark Mode
         darkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     getDelegate().applyDayNight();
-                    System.out.println("---------------------------------------------------------------");
-                    System.out.println("--------------------AGAIN ON CREATE CALLED ----------------------");
-                    System.out.println("---------------------------------------------------------------");
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     getDelegate().applyDayNight();
