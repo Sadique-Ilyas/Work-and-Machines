@@ -44,7 +44,7 @@
         android:id="@+id/text_view_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="11:51 AM"
         android:textColor="?attr/textColor"
         android:textSize="40sp"
@@ -117,7 +117,6 @@
         android:text="Time Difference"
         android:textColor="?attr/textColor"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.0" />
@@ -151,24 +150,28 @@
         android:id="@+id/divider4"
         android:layout_width="1dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="?attr/tintColor"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_machineName"
         app:layout_constraintStart_toEndOf="@+id/text_view_time"
         app:layout_constraintTop_toTopOf="@+id/text_view_time" />
 
     <TextView
         android:id="@+id/text_view_machineName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="Machine 101"
         android:textColor="?attr/textColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/text_view_time"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/divider4"
+        app:layout_constraintTop_toTopOf="@+id/divider4"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -198,11 +201,12 @@
 
     <ImageView
         android:id="@+id/image_view_activeStatus"
-        android:layout_width="0dp"
+        android:layout_width="15dp"
         android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:src="@drawable/ic_active"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_activeStatus"
-        app:layout_constraintEnd_toEndOf="@+id/text_view_machineName"
         app:layout_constraintStart_toEndOf="@+id/text_view_activeStatus"
         app:layout_constraintTop_toTopOf="@+id/text_view_activeStatus" />
 
@@ -212,7 +216,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="10:15 AM"
+        android:text="00:00 AM"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
@@ -220,12 +224,12 @@
         app:layout_constraintTop_toTopOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/machine_start_time2"
+        android:id="@+id/job_start_time"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="10:30 AM"
+        android:text="00:00 AM"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
@@ -236,24 +240,24 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/machine_start_time3"
+        android:id="@+id/job_end_time"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="11:30 AM"
+        android:text="00:00 AM"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="@+id/machine_start_time2"
+        app:layout_constraintEnd_toEndOf="@+id/job_start_time"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/machine_start_time2"
+        app:layout_constraintStart_toStartOf="@+id/job_start_time"
         app:layout_constraintTop_toTopOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/machine_end_time"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="11:50 AM"
+        android:text="00:00 AM"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
@@ -295,12 +299,11 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:text="Running Time : "
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/machine_start_time"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/divider5"
         app:layout_constraintTop_toTopOf="@+id/machine_start_time"
         app:layout_constraintVertical_bias="0.0" />
@@ -309,33 +312,32 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:text="Job Time : "
         android:textColor="?attr/textColor"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/machine_start_time2"
+        app:layout_constraintBottom_toBottomOf="@+id/job_start_time"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/divider6"
-        app:layout_constraintTop_toTopOf="@+id/machine_start_time2" />
+        app:layout_constraintTop_toTopOf="@+id/job_start_time"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/machine_running_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="1 hr 35 min"
+        android:text="00 hr 00 min"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/job_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="1 hr"
+        android:text="00 hr 00 min"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -347,7 +349,8 @@
         android:layout_marginLeft="24dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="?attr/tintColor"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+
+        app:layout_constraintBottom_toBottomOf="@+id/machine_end_time"
         app:layout_constraintStart_toEndOf="@+id/machine_start_time"
         app:layout_constraintTop_toTopOf="@+id/machine_start_time" />
 
@@ -359,9 +362,9 @@
         android:layout_marginLeft="24dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="?attr/tintColor"
-        app:layout_constraintBottom_toBottomOf="@+id/machine_start_time3"
-        app:layout_constraintStart_toEndOf="@+id/machine_start_time2"
-        app:layout_constraintTop_toTopOf="@+id/machine_start_time2" />
+        app:layout_constraintBottom_toBottomOf="@+id/job_end_time"
+        app:layout_constraintStart_toEndOf="@+id/job_start_time"
+        app:layout_constraintTop_toTopOf="@+id/job_start_time" />
 
     <Spinner
         android:id="@+id/machineSpinner"
@@ -382,8 +385,8 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Machine: "
+        android:padding="3dp"
         android:textColor="?attr/textColor"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -393,13 +396,45 @@
         android:id="@+id/darkSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="Dark:"
         android:textColor="?attr/textColor"
         app:layout_constraintBottom_toBottomOf="@+id/machineSpinner"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/machineSpinner" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/time_difference"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="JOB 1: 00 hr 00 min"
+                android:textColor="?attr/textColor" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/up_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Up Time : 00:00:00"
+        android:textColor="?attr/textColor"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
