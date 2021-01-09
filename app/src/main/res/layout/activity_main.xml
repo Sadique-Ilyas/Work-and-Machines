@@ -369,15 +369,13 @@
     <Spinner
         android:id="@+id/machineSpinner"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
         android:backgroundTint="?attr/tintColor"
-        android:layout_marginRight="8dp"
         android:popupBackground="?attr/darkBackground"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
-        app:layout_constraintEnd_toStartOf="@+id/darkSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/textView18"
         app:layout_constraintTop_toTopOf="@+id/textView18" />
 
@@ -392,28 +390,19 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <Switch
-        android:id="@+id/darkSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dark:"
-        android:textColor="?attr/textColor"
-        app:layout_constraintBottom_toBottomOf="@+id/machineSpinner"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/machineSpinner" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -430,7 +419,7 @@
         android:id="@+id/up_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Up Time : 00:00:00"
+        android:text="Up Time : 00:00"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView5"

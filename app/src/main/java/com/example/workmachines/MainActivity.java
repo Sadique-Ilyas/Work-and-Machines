@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,9 +27,11 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner;
-    private Switch darkSwitch;
     private TextView time, date;
     private Calendar calendar;
+    long myUpTime = 0;
+    int upTime_hour = 0;
+    int upTime_min = 0;
     static int machine_hours = 0;
     static int machine_min = 0;
     static int job_hours = 0;
@@ -51,21 +50,20 @@ public class MainActivity extends AppCompatActivity {
     String job_end_time_12hr;
     String time_difference = "";
     String my_time_difference = "";
-    private TextView upTime, machineName, machineStartTime, machineEndTime, machineRunningTime,
+    private TextView machineName, upTime, machineStartTime, machineEndTime, machineRunningTime,
             jobStartTime, jobEndTime, jobTime, timeDifference;
+
     private DatabaseReference sensor1Reference = FirebaseDatabase.getInstance().getReference("sensor_f1");
     private DatabaseReference sensor2Reference = FirebaseDatabase.getInstance().getReference("sensor_f2");
+    private DatabaseReference upTimeReference = FirebaseDatabase.getInstance().getReference("upTime");
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.DarkTheme);
-        } else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+        setTheme(R.style.DarkTheme);
         setContentView(R.layout.activity_main);
 
         //Initializing Views
-        darkSwitch = findViewById(R.id.darkSwitch);
         spinner = findViewById(R.id.machineSpinner);
         time = findViewById(R.id.text_view_time);
         date = findViewById(R.id.text_view_date);
@@ -82,11 +80,6 @@ public class MainActivity extends AppCompatActivity {
         jobTime = findViewById(R.id.job_time);
 
         timeDifference = findViewById(R.id.time_difference);
-
-        //Checking Dark mode on startup
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            darkSwitch.setChecked(true);
-        }
 
         //Date & Time
         Thread thread = new Thread() {
@@ -114,82 +107,24 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
 
         //Machine Spinner
-        final String[] spinnerValues = {"Welding Gantry", "Beam Maker Gantry - 1"
-//                , "Beam Maker Gantry - 2", "CNC Flame Cutting Gantry",
-//                "PLC Flame Cutting Gantry", "ESAB CNC Cutting", "VMC Machine", "Beam Rotator", "Iron Worker Machine", "Shot Blasting Machine"
-        };
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, spinnerValues);
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.Spinner_Items,
+                R.layout.color_spinner_layout
+        );
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         spinner.setAdapter(arrayAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-//                int up_time_hr = 2;
-//                int up_time_min = 48;
-//                int up_time_sec = 19;
-//
-//                int machine_start_hr = 10;
-//                int machine_start_min = 15;
-//                int machine_end_hr = 11;
-//                int machine_end_min = 0;
-//                int machine_running_hr = 0;
-//                int machine_running_min = 45;
-//
-//                int job_start_hr = 10;
-//                int job_start_min = 0;
-//                int job_end_hr = 12;
-//                int job_end_min = 0;
-//                int job_hr = 2;
-//                int job_min = 0;
-//
-//                int time_difference_hr = 1;
-//                int time_difference_min = 15;
-//
-                machineName.setText(spinnerValues[position]);
-//                switch (position){
-//                    case 0:
-//                        upTime.setText("Up Time : 0" +up_time_hr+ ":" +up_time_min+ ":" +up_time_sec);
-//                        machineStartTime.setText(machine_start_hr +":"+ machine_start_min +" AM");
-//                        machineEndTime.setText(machine_end_hr +":0"+ machine_end_min +" AM");
-//                        machineRunningTime.setText(machine_running_hr +"0 hr "+ machine_running_min +" min");
-//                        jobStartTime.setText(job_start_hr +":0"+ job_start_min +" AM");
-//                        jobEndTime.setText(job_end_hr +":0"+ job_end_min +" PM");
-//                        jobTime.setText(job_hr +" hr "+ job_min +"0 min");
-//                        timeDifference.setText("JOB 001: "+ time_difference_hr +" hr "+ time_difference_min +" min");
-//                        break;
-//                    case 1:
-//                        upTime.setText("Up Time : 0" +(up_time_hr+1)+ ":" +(up_time_min+5)+ ":" +(up_time_sec+4));
-//                        machineStartTime.setText(machine_start_hr +":"+ (machine_start_min+5) +" AM");
-//                        machineEndTime.setText(machine_end_hr +":0"+ (machine_end_min+5) +" AM");
-//                        machineRunningTime.setText(machine_running_hr +"0 hr "+ (machine_running_min+5) +" min");
-//                        jobStartTime.setText(job_start_hr +":0"+ (job_start_min+5) +" AM");
-//                        jobEndTime.setText(job_end_hr +":0"+ (job_end_min+5) +" PM");
-//                        jobTime.setText(job_hr +" hr 0"+ (job_min+5) +" min");
-//                        timeDifference.setText("JOB 001: "+ time_difference_hr +" hr "+ (time_difference_min+5) +" min");
-//                        break;
-//                }
+                machineName.setText(parent.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-
-
-        // Switch for Dark Mode
-        darkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    getDelegate().applyDayNight();
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    getDelegate().applyDayNight();
-                }
             }
         });
 
@@ -222,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
                     machineStartTime.setText(machine_start_time_12hr);
                     machineHasStarted = true;
+
+                    // Start Uptime
+//                    startUptimeChronometer();
+
                     try {
                         date1 = dateFormat.parse(machine_start_time);
                         myDate1 = date1.getTime();
@@ -245,6 +184,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     machineEndTime.setText(machine_end_time_12hr);
+
+                    // Stop Uptime
+//                    pauseUptimeChronometer();
+
                     try {
                         date2 = dateFormat.parse(machine_end_time);
                         myDate2 = date2.getTime();
@@ -257,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
                     machine_hours = (machine_hours < 0 ? -machine_hours : machine_hours);
                     machine_min = (machine_min < 0 ? -machine_min : machine_min);
                     machineRunningTime.setText(machine_hours + " hr " + " : " + machine_min + " min");
+
+                    Upload upload = new Upload(difference);
+                    FirebaseDatabase.getInstance().getReference("upTime/").push()
+                            .setValue(upload);
                 }
             }
 
@@ -332,14 +279,6 @@ public class MainActivity extends AppCompatActivity {
                     job_min = (job_min < 0 ? -job_min : job_min);
                     jobTime.setText(job_hours + " hr " + " : " + job_min + " min");
                 }
-                System.out.println("--------------------------------");
-                System.out.println("--------------------------------");
-                System.out.println("--------------------------------");
-                System.out.println("--------------CALLED------------");
-                System.out.println("----job_min----" + job_min);
-                System.out.println("----machine_min---" + machine_min);
-                System.out.println("---job_hours----" + job_hours);
-                System.out.println("---machine_hours----" + machine_hours);
                 if ((job_min != 0 || machine_min != 0) || (job_hours != 0 || machine_hours != 0)) {
                     timeDifference();
                     job_min = 0;
@@ -400,9 +339,35 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    private void setUpTime() {
+        upTimeReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                myUpTime = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Upload value = dataSnapshot.getValue(Upload.class);
+                    if (value != null) {
+                        myUpTime = myUpTime + value.getUpTime();
+                    }
+                }
+                upTime_hour = (int) (myUpTime / (60 * 60 * 1000) % 24);
+                upTime_min = (int) (myUpTime / (60 * 1000) % 60);
+                upTime_hour = (upTime_hour < 0 ? -upTime_hour : upTime_hour);
+                upTime_min = (upTime_min < 0 ? -upTime_min : upTime_min);
+                upTime.setText("UpTime: " + upTime_hour + " hr " + " : " + upTime_min + " min");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         setTimeDifference();
+        setUpTime();
     }
 }

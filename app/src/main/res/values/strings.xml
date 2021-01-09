@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Work &amp; Machines</string>
+    <string name="r_d_at_uemj"><![CDATA[R & D at UEMJ]]></string>
 
-    <string-array name="spinnerValues">
-        <item>Machine 101</item>
-        <item>Machine 102</item>
-        <item>Add Machine…</item>
+    <string-array name="Spinner_Items">
+        <item>Welding Gantry</item>
+        <item>Beam Maker Gantry - 1</item>
+        <item>Beam Maker Gantry - 2</item>
+        <item>CNC Flame Cutting Gantry</item>
+        <item>PLC Flame Cutting Gantry</item>
+        <item>ESAB CNC Cutting</item>
+        <item>VMC Machine</item>
+        <item>Beam Rotator</item>
+        <item>Iron Worker Machine</item>
+        <item>Shot Blasting Machine</item>
     </string-array>
 </resources>
