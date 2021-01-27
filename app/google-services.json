@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "530287911538",
+    "firebase_url": "https://work-and-machines-daf91.firebaseio.com",
+    "project_id": "work-and-machines-daf91",
+    "storage_bucket": "work-and-machines-daf91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530287911538:android:25f175836afea1f22318eb",
+        "android_client_info": {
+          "package_name": "com.example.workmachines"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530287911538-5qmjbcvhvnm8v3spa229j2067lc71bmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjSJmL7S_maxsEXs0U4Wosxwq9SXI9_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530287911538-5qmjbcvhvnm8v3spa229j2067lc71bmb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
