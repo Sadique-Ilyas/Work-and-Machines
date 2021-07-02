@@ -304,6 +304,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/machine_start_time"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/divider5"
         app:layout_constraintTop_toTopOf="@+id/machine_start_time"
         app:layout_constraintVertical_bias="0.0" />
@@ -317,6 +318,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/job_start_time"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/divider6"
         app:layout_constraintTop_toTopOf="@+id/job_start_time"
         app:layout_constraintVertical_bias="0.0" />
@@ -325,7 +327,7 @@
         android:id="@+id/machine_running_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="00 hr 00 min"
+        android:text="00 hr 00 min 00 sec"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -335,7 +337,7 @@
         android:id="@+id/job_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="00 hr 00 min"
+        android:text="00 hr 00 min 00 sec"
         android:textColor="?attr/textColor"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -345,8 +347,8 @@
         android:id="@+id/divider5"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="?attr/tintColor"
 
@@ -358,8 +360,8 @@
         android:id="@+id/divider6"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="?attr/tintColor"
         app:layout_constraintBottom_toBottomOf="@+id/job_end_time"
@@ -409,7 +411,7 @@
                 android:id="@+id/time_difference"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="JOB 1: 00 hr 00 min"
+                android:text="JOB 1: 00 hr 00 min 00 sec"
                 android:textColor="?attr/textColor" />
 
         </LinearLayout>
